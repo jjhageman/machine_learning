@@ -63,14 +63,34 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+%a1 = [ones(m, 1) X];
+%a2 = sigmoid(Theta1*a1');
+%a2 = [ones(1,m); a2];
+%a3 = sigmoid(Theta2*a2);
+a1 = [ones(m,1) X];
+z1 = sigmoid(a1*Theta1');
+a2 = [ones(size(z1,1),1) z1];
+a3 = sigmoid(a2*Theta2');
+
+YRows = eye(num_labels);
+Y = YRows(y, :);
+
+J=((-Y).*log(a3)-(1-Y).*log(1-a3))/m;
+J= sum(J(:));
 
 
+% Regularization
+
+T1 = Theta1 (:, 2:end);
+T2 = Theta2 (:, 2:end);
+R = (lambda/(2*m)) * (sum(sum(T1.*T1)) + sum(sum(T2.*T2)));
+
+J=J+R;
 
 
-
-
-
-
+for t = 1:m
+  A1= X(t)
+end
 
 
 
