@@ -15,7 +15,10 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
-
+m = size(X,1);
+powers = 1:p;
+powers = powers(ones(m,1),:);
+X_poly = bsxfun('power',X(:,ones(1,p)),powers);
 
 
 

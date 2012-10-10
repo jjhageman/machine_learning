@@ -21,12 +21,18 @@ grad = zeros(size(theta));
 
 
 
+J = (1/(2*m))*sum((X*theta-y).^2,1) + ((lambda/(2*m)) * sum(theta(2:end).^2));
+%reg = (lambda/(2*m))*(theta(2:end).^2);
+%J=J+reg;
 
+temp=theta;
 
+temp(1)=0;
 
+h = X*theta;
+grad = (1/m).*(X' * (h-y));
 
-
-
+grad = grad + (lambda/m) .* temp;
 
 
 
