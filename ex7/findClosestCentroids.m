@@ -22,9 +22,16 @@ idx = zeros(size(X,1), 1);
 %
 
 
-
-
-
+for i=1:length(X)
+  min = Inf;
+  for j=1:K
+    d = sqrt(sum((centroids(j,:)-X(i,:)).^2));
+    if d < min
+      min = d;
+      idx(i) = j;
+    endif
+  end
+end
 
 
 % =============================================================
